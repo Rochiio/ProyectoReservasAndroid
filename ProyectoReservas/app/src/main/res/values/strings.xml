@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ProyectoReservas</string>
+    <string name="email">Correo</string>
+    <string name="write_email">Escribe tu email</string>
+    <string name="password">Contraseña</string>
+    <string name="write_password">Escribe tu contraseña</string>
+    <string name="access">Acceder</string>
+    <string name="register">Registro</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="required">Requerido</string>
+</resources>
