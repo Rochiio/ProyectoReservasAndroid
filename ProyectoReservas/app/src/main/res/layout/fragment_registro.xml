@@ -9,13 +9,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10sp"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="Nombre del usuario"
             app:helperText="@string/required"
             app:counterEnabled="true"
@@ -26,7 +26,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:maxLength="20"
                 android:inputType="textPersonName"
                 />
@@ -35,7 +35,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="Apellido del usuario"
             app:counterEnabled="true"
             app:counterMaxLength="20"
@@ -45,7 +45,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editSurname"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:maxLength="20"
                 android:inputType="textPersonName"
                 />
@@ -55,7 +55,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="Telefono del usuario"
             app:startIconDrawable="@drawable/ic_baseline_local_phone_24"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -63,7 +63,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editPhone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:maxLength="20"
                 android:inputType="phone"
                 />
@@ -73,7 +73,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="Correo del usuario"
             app:counterEnabled="true"
             app:counterMaxLength="40"
@@ -84,7 +84,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editEmail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:maxLength="20"
                 android:inputType="textEmailAddress"
                 />
@@ -94,7 +94,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="Contraseña del usuario"
             app:helperText="@string/required"
             app:startIconDrawable="@drawable/ic_baseline_key_24"
@@ -103,7 +103,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:inputType="textPassword"
                 />
 

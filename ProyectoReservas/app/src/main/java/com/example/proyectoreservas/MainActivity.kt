@@ -29,29 +29,32 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    /**
+     * Abrir el fragmento para el registro del cliente.
+     */
     private fun openFragment() {
-        val fragment = RegistroFragment() //crear el fragment
-
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-
-        fragmentTransaction.add(R.id.mainContainer, fragment) //ponemos el fragmento en
-        fragmentTransaction.addToBackStack(null) //permite que se pueda volver atras
-        fragmentTransaction.commit()
-
+        var fragmentManager = getSupportFragmentManager();
+        var fragmentTransaction = fragmentManager.beginTransaction();
+        var fragment1 = RegistroFragment();
+        fragmentTransaction.replace(android.R.id.content, fragment1).commit();
     }
 
+
+    /**
+     * Para ver si el cliente es correcto.
+     */
     private fun correctUser() {
-        lifecycleScope.launch{
             var email = binding.labelEmail.text.toString()
             var password = binding.labelPassword.text.toString()
 
+        lifecycleScope.launch{
             val find = UsuarioApplication.database.usuarioDao().getAllUsers()
             var encontrado = find.firstOrNull { it.email == email && it.password == password }
 
             encontrado?.let {
                 if (it.password==password){
-
+                    Snackbar.make(binding.root,"Usuario correcto",Snackbar.LENGTH_LONG).show()
                 }else{
                     Snackbar.make(binding.root,"Usuario incorrecto",Snackbar.LENGTH_LONG).show()
                 }
