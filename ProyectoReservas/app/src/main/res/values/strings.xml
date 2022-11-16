@@ -10,4 +10,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="required">Requerido</string>
     <string name="save">Guardar</string>
+    <string name="add_cita">Añadir Cita</string>
+    <string name="logout">Salir</string>
+    <string name="about">Acerca de</string>
+    <string name="my_dates">Mis citas</string>
 </resources>

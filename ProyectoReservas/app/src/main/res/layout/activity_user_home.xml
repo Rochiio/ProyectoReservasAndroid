@@ -27,10 +27,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="99dp"
                 app:srcCompat="@drawable/icono" />
+
+            <Button
+                android:id="@+id/buttonAddCita"
+                android:layout_marginTop="150dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/fuxia"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:text="@string/add_cita" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/fuxia"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:text="@string/logout" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/fuxia"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:text="@string/about" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginLeft="20sp"
+            android:layout_marginStart="20sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -41,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:text="Mis citas"
+                android:text="@string/my_dates"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 />
@@ -51,7 +76,7 @@
                 android:paddingTop="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem=""
+                tools:listitem="@layout/citas_item"
                 />
 
 
