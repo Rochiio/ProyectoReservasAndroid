@@ -27,6 +27,13 @@ class MainActivity : AppCompatActivity() {
             correctUser()
         }
 
+        lifecycleScope.launch{
+            //UsuarioApplication.database.usuarioDao().addUser(Usuario(0,"Pepe","Algo","6666","pepe","1234",false))
+
+            var lista = UsuarioApplication.database.usuarioDao().getAllUsers()
+            lista.forEach{println(it)}
+        }
+
     }
 
 
@@ -37,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         var fragmentManager = getSupportFragmentManager();
         var fragmentTransaction = fragmentManager.beginTransaction();
         var fragment1 = RegistroFragment();
-        fragmentTransaction.replace(android.R.id.content, fragment1).commit();
+        fragmentTransaction.add(android.R.id.content, fragment1).commit();
     }
 
 
@@ -45,14 +52,13 @@ class MainActivity : AppCompatActivity() {
      * Para ver si el cliente es correcto.
      */
     private fun correctUser() {
-            var email = binding.labelEmail.text.toString()
-            var password = binding.labelPassword.text.toString()
+        var email = binding.editTextEmail.text.toString()
+        println(email)
+        var password = binding.editTextPassword.text.toString()
 
         lifecycleScope.launch{
-            val find = UsuarioApplication.database.usuarioDao().getAllUsers()
-            var encontrado = find.firstOrNull { it.email == email && it.password == password }
-
-            encontrado?.let {
+            val find = UsuarioApplication.database.usuarioDao().getUserByEmail(email)
+            find?.let {
                 if (it.password==password){
                     Snackbar.make(binding.root,"Usuario correcto",Snackbar.LENGTH_LONG).show()
                 }else{

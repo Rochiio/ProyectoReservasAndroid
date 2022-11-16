@@ -10,7 +10,9 @@ import com.example.proyectoreservas.models.Usuario
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
-
+/**
+ * Fragmento del registro del usuario.
+ */
 class RegistroFragment : Fragment() {
     private lateinit var binding: FragmentRegistroBinding
     private var mActivity: MainActivity? = null
@@ -29,7 +31,8 @@ class RegistroFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mActivity = activity as? MainActivity
-        mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(true) //poner fecha en la actionBar para volver
+        mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         setHasOptionsMenu(true)
     }
@@ -42,30 +45,65 @@ class RegistroFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
+            android.R.id.home -> {
+                salir()
+                true
+            }
+            
             R.id.action_save -> {
-                val user = Usuario(name = binding.editName.text.toString().trim(),
-                    surname = binding.editSurname.text.toString().trim(),
-                    telephone = binding.editPhone.text.toString().trim(),
-                    email = binding.editEmail.text.toString().trim(),
-                    password = binding.editPassword.toString().trim(),
-                    admin = false
-                )
+               var user = filtrarDatos()
+               user?.let{
+                    lifecycleScope.launch {
+                        UsuarioApplication.database.usuarioDao().addUser(user)
 
-                //lanzamos una corrutina
-                lifecycleScope.launch {
-                    //StoreApplication.database.storeDao().addStore(store)
-                    UsuarioApplication.database.usuarioDao().addUser(user) //a la hora de guarda tenga ya id
+                        Snackbar.make(binding.root, "Usuario agregado correctamente",
+                            Snackbar.LENGTH_SHORT)
+                            .show()
 
-                    Snackbar.make(binding.root, "Usuario agregado correctamente",
-                        Snackbar.LENGTH_SHORT)
-                        .show()
-                    mActivity?.onBackPressed()
+                        salir()
+                    }
+                }?: run{
+                   Snackbar.make(binding.root, "Datos requeridos vaciós y/o incorrectos",
+                       Snackbar.LENGTH_SHORT)
+                       .show()
                 }
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
 
-        //return super.onOptionsItemSelected(item)
     }
+
+
+    /**
+     * Salir del fragmento
+     */
+    private fun salir() {
+        fragmentManager?.beginTransaction()?.remove(this)?.commit()
+        mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    }
+
+
+    /**
+     * Antes de crear al nuevo cliente ver si estan todos los datos necesarios y que no existe ningun usuario con ese email.
+     */
+    private fun filtrarDatos(): Usuario? {
+        var name = binding.editName.text.toString().trim()
+        var surname = binding.editSurname.text.toString().trim()
+        var telephone = binding.editPhone.text.toString().trim()
+        var email = binding.editEmail.text.toString().trim()
+        var password = binding.editPassword.toString().trim()
+        var correcto=0
+        name.isNotEmpty()
+        email.matches(Regex("/^(([^<>()\\[\\]\\\\.,;:\\s@”]+(\\.[^<>()\\[\\]\\\\.,;:\\s@”]+)*)" +
+                "|(“.+”))@((\\[[0–9]{1,3}\\.[0–9]{1,3}\\.[0–9]{1,3}\\.[0–9]{1,3}])|(([a-zA-Z\\-0–9]+\\.)+[a-zA-Z]{2,}))\$/"))
+        password.isNotEmpty()
+
+        if(correcto==3){
+            return Usuario(0,name,surname,telephone,email,password,false)
+        }
+        return null
+    }
+
+
 }

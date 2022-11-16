@@ -7,9 +7,8 @@ import androidx.room.PrimaryKey
 /**
  * Clase de usuario
  */
-@Entity(tableName = "Users")
-//, indices = [Index(value = ["email"], unique = true)]
-class Usuario(
+@Entity(tableName = "Users", indices = [Index(value = ["email"], unique = true)])
+data class Usuario(
     @PrimaryKey(autoGenerate = true)
     var id: Int=0,
     val name: String="",
