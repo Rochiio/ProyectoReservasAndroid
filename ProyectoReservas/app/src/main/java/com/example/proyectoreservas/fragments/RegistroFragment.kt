@@ -1,9 +1,11 @@
-package com.example.proyectoreservas
+package com.example.proyectoreservas.fragments
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.proyectoreservas.MainActivity
+import com.example.proyectoreservas.R
 import com.example.proyectoreservas.databinding.FragmentRegistroBinding
 import com.example.proyectoreservas.db.UsuarioApplication
 import com.example.proyectoreservas.models.Usuario
@@ -49,7 +51,7 @@ class RegistroFragment : Fragment() {
                 salir()
                 true
             }
-            
+
             R.id.action_save -> {
                var user = filtrarDatos()
                user?.let{

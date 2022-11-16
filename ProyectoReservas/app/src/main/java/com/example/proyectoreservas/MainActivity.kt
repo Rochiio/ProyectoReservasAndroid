@@ -5,8 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.example.proyectoreservas.databinding.ActivityMainBinding
 import com.example.proyectoreservas.db.UsuarioApplication
-import com.example.proyectoreservas.models.Usuario
-import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.example.proyectoreservas.fragments.RegistroFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 

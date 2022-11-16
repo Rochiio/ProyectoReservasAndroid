@@ -4,7 +4,8 @@
 
     <item
         android:id="@+id/action_save"
-        android:title="Save"
+        android:title="@string/save"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_baseline_send_24"
         app:showAsAction="ifRoom"
         />
