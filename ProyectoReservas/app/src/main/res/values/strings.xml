@@ -7,11 +7,11 @@
     <string name="access">Acceder</string>
     <string name="register">Registro</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="required">Requerido</string>
     <string name="save">Guardar</string>
     <string name="add_cita">Añadir Cita</string>
     <string name="logout">Salir</string>
     <string name="about">Acerca de</string>
     <string name="my_dates">Mis citas</string>
+    <string name="title_activity_user_home">UserHome</string>
 </resources>
