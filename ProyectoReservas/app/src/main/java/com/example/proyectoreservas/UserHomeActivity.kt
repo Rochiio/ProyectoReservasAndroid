@@ -30,7 +30,7 @@ class UserHomeActivity : AppCompatActivity() {
         adaptador = CitaAdapter(mutableListOf())
 
         //Usuario
-        var line = intent.getStringExtra(EXTRA_MESSAGE).toString()
+        var line = intent.getStringExtra("USUARIO").toString()
         user = Json.decodeFromString(line)
 
 

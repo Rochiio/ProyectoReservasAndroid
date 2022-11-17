@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-
         android:name=".db.UsuarioApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icono"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icono"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoReservas"
         tools:targetApi="31">
@@ -36,9 +35,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <meta-data
-        android:name="com.google.android.gms.ads.APPLICATION_ID"
-        android:value="ca-app-pub-"/>
     </application>
 
 </manifest>

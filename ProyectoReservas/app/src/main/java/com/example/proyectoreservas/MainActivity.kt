@@ -9,7 +9,6 @@ import com.example.proyectoreservas.databinding.ActivityMainBinding
 import com.example.proyectoreservas.db.UsuarioApplication
 import com.example.proyectoreservas.fragments.RegistroFragment
 import com.example.proyectoreservas.models.Usuario
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import kotlinx.serialization.encodeToString
@@ -25,8 +24,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        MobileAds.initialize(this) {}
-
         binding.register.setOnClickListener{
             openFragment()
         }
@@ -36,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch{
-            UsuarioApplication.database.usuarioDao().addUser(Usuario(0,"Pepe","Algo","6666","pepe","1234",false))
+            //UsuarioApplication.database.usuarioDao().addUser(Usuario(0,"Pepe","Algo","6666","pepe","1234",false))
 
             var lista = UsuarioApplication.database.usuarioDao().getAllUsers()
             lista.forEach{println(it)}
