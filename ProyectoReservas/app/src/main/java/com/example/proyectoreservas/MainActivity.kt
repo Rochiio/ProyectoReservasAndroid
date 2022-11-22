@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.proyectoreservas.databinding.ActivityMainBinding
 import com.example.proyectoreservas.db.UsuarioApplication
 import com.example.proyectoreservas.fragments.RegistroFragment
+import com.example.proyectoreservas.models.Data
 import com.example.proyectoreservas.models.Usuario
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -16,7 +17,6 @@ import kotlinx.serialization.json.Json
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private var json = Json{prettyPrint=false}
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -81,9 +81,8 @@ class MainActivity : AppCompatActivity() {
      * Iniciar la actividad
      */
     private fun iniciarActivity(usuario: Usuario) {
-        var intent = Intent(this,UserHomeActivity::class.java).apply {
-            putExtra("USUARIO",json.encodeToString(usuario))
-        }
+        Data.usuarioActual=usuario
+        var intent = Intent(this,UserHomeActivity::class.java)
         startActivity(intent)
     }
 

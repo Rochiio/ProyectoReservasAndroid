@@ -14,4 +14,10 @@
     <string name="about">Acerca de</string>
     <string name="my_dates">Mis citas</string>
     <string name="title_activity_user_home">UserHome</string>
+    <string name="home">home</string>
+    <string name="add">add</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="citas">Mis Citas</string>
+    <string name="peluqueria">Peluqueria</string>
 </resources>

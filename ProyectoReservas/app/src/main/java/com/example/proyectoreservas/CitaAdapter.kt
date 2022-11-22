@@ -23,9 +23,6 @@ class CitaAdapter(
 
         fun setListener(cita: Cita) {
 //            binding.root.setOnClickListener{ listener.onClick(cita) }
-//            binding.root.setOnLongClickListener {
-//                listener.onDeleteStore(cita)
-//                true
             }
 
         }

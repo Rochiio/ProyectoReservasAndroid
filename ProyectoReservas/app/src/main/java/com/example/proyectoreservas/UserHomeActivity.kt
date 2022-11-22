@@ -1,77 +1,80 @@
 package com.example.proyectoreservas
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.AlarmClock.EXTRA_MESSAGE
-import android.widget.LinearLayout
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.proyectoreservas.databinding.ActivityUserHomeBinding
-import com.example.proyectoreservas.db.UsuarioApplication
-import com.example.proyectoreservas.models.Cita
+import com.example.proyectoreservas.fragments.HomeFragment
+import com.example.proyectoreservas.models.Data
 import com.example.proyectoreservas.models.Usuario
-import kotlinx.coroutines.launch
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 
 class UserHomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserHomeBinding
-    private lateinit var adaptador: CitaAdapter
+    private lateinit var mFragmentManager: FragmentManager
+    private lateinit var mActivityFragment: Fragment
     private lateinit var user: Usuario
-    private var json = Json{prettyPrint=false}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityUserHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        adaptador = CitaAdapter(mutableListOf())
 
         //Usuario
-        var line = intent.getStringExtra("USUARIO").toString()
-        user = Json.decodeFromString(line)
+        user = Data.usuarioActual!!
 
-
-        acciones()
-
-        setUpRecycler()
+        setUpFragment()
     }
 
-    private fun setUpRecycler() {
-        binding.recycler.apply {
-            getCitas()
+    private fun setUpFragment() {
+        mFragmentManager = supportFragmentManager
 
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@UserHomeActivity)
-            adapter = adaptador
+        val home = HomeFragment()
+        val add = AddFragment()
+        val profile = ProfileFragment()
+
+        mActivityFragment = home
+
+        mFragmentManager.beginTransaction()
+            .add(R.id.hostFragment, profile, ProfileFragment::class.java.name)
+            .hide(profile)
+            .commit()
+
+        mFragmentManager.beginTransaction()
+            .add(R.id.hostFragment, add, AddFragment::class.java.name)
+            .hide(add)
+            .commit()
+
+        mFragmentManager.beginTransaction()
+            .add(R.id.hostFragment, home, HomeFragment::class.java.name)
+            .commit()
+
+        binding.buttonNav.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.action_home ->{
+                    mFragmentManager.beginTransaction().hide(mActivityFragment).show(home).commit()
+                    mActivityFragment= home
+                    true
+                }
+
+                R.id.action_add ->{
+                    mFragmentManager.beginTransaction().hide(mActivityFragment).show(add).commit()
+                    mActivityFragment= add
+                    true
+                }
+
+                R.id.action_about ->{
+                    mFragmentManager.beginTransaction().hide(mActivityFragment).show(profile).commit()
+                    mActivityFragment= profile
+                    true
+                }
+                else -> false
+            }
         }
     }
 
 
-    private fun acciones() {
-        binding.buttonAbout.setOnClickListener {
-
-        }
-
-        binding.buttonLogOut.setOnClickListener {
-
-        }
-
-        binding.buttonAddCita.setOnClickListener {
-            var fragmentSupp = getSupportFragmentManager()
-            var transaction = fragmentSupp.beginTransaction()
-            //transaction.add()
-        }
-    }
-
-    private fun getCitas() {
-        lifecycleScope.launch{
-            val citas = UsuarioApplication.database.citasDao().getCitaByClienteEmail(user.email)
-            adaptador.setCitas(citas)
-        }
-    }
 
 
 }

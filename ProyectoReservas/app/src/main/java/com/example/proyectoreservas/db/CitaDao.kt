@@ -9,6 +9,9 @@ interface CitaDao {
     @Query("SELECT * FROM Citas WHERE clienteEmail= :email")
     suspend fun getCitaByClienteEmail(email: String):List<Cita>
 
+    @Query("SELECT * FROM Citas")
+    suspend fun getAllCitas():List<Cita>
+
     @Insert
     suspend fun addCita(cita: Cita)
 

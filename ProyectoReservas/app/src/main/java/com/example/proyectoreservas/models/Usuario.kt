@@ -12,10 +12,8 @@ import kotlinx.serialization.Serializer
  */
 
 
-@OptIn(ExperimentalSerializationApi::class)
 @Entity(tableName = "Users", indices = [Index(value = ["email"], unique = true)])
 @Serializable
-@Serializer(Usuario::class)
 data class Usuario(
     @PrimaryKey(autoGenerate = true)
     var id: Int=0,
