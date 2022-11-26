@@ -18,7 +18,7 @@ class CitaAdapter(
         private val binding = CitasItemBinding.bind(view)
 
         fun bind(element: Cita){
-            binding.textoPeluqueria.text=element.lugar
+            binding.textoPeluqueria.text=element.peluquera
         }
 
         fun setListener(cita: Cita) {

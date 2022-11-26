@@ -30,6 +30,7 @@ class HomeFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         var citas: MutableList<Cita> = mutableListOf()
         lifecycleScope.launch{
             citas = UsuarioApplication.database.citasDao().getCitaByClienteEmail(Data.usuarioActual?.email!!).toMutableList()

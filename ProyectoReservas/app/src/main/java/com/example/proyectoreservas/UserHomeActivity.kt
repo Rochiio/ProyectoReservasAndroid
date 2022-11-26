@@ -1,11 +1,17 @@
 package com.example.proyectoreservas
 
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.proyectoreservas.databinding.ActivityUserHomeBinding
+import com.example.proyectoreservas.fragments.AddFragment
 import com.example.proyectoreservas.fragments.HomeFragment
+import com.example.proyectoreservas.fragments.ProfileFragment
 import com.example.proyectoreservas.models.Data
 import com.example.proyectoreservas.models.Usuario
 
@@ -14,6 +20,7 @@ class UserHomeActivity : AppCompatActivity() {
     private lateinit var mFragmentManager: FragmentManager
     private lateinit var mActivityFragment: Fragment
     private lateinit var user: Usuario
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +35,7 @@ class UserHomeActivity : AppCompatActivity() {
     }
 
     private fun setUpFragment() {
+        binding.buttonNav.itemTextColor=ColorStateList.valueOf(getResources().getColor(R.color.fuxia))
         mFragmentManager = supportFragmentManager
 
         val home = HomeFragment()

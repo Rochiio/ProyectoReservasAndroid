@@ -2,6 +2,7 @@ package com.example.proyectoreservas.db
 
 import android.app.Application
 import androidx.room.Room
+import androidx.room.migration.Migration
 
 class UsuarioApplication: Application() {
 
@@ -15,6 +16,6 @@ class UsuarioApplication: Application() {
 
         //Constructor de la base de datos
         database = Room.databaseBuilder(this, UsuarioDatabase::class.java,
-            "UsuarioDatabase").build()
+            "UsuarioDatabase").fallbackToDestructiveMigration().build()
     }
 }

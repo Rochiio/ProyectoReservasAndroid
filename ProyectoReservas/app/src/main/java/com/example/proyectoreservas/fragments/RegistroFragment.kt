@@ -46,35 +46,39 @@ class RegistroFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId){
+        return when (item.itemId) {
             android.R.id.home -> {
                 salir()
                 true
             }
 
             R.id.action_save -> {
-               var user = filtrarDatos()
-               user?.let{
+                var user = filtrarDatos()
+                user?.let {
                     lifecycleScope.launch {
                         UsuarioApplication.database.usuarioDao().addUser(user)
 
-                        Snackbar.make(binding.root, "Usuario agregado correctamente",
-                            Snackbar.LENGTH_SHORT)
+                        Snackbar.make(
+                            binding.root, "Usuario agregado correctamente",
+                            Snackbar.LENGTH_SHORT
+                        )
                             .show()
 
                         salir()
                     }
-                }?: run{
-                   Snackbar.make(binding.root, "Datos requeridos vaciós y/o incorrectos",
-                       Snackbar.LENGTH_SHORT)
-                       .show()
+                }?: run {
+                        Snackbar.make(
+                            binding.root, "Datos requeridos vaciós y/o incorrectos",
+                            Snackbar.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                    true
                 }
-                true
+                else -> super.onOptionsItemSelected(item)
             }
-            else -> super.onOptionsItemSelected(item)
         }
 
-    }
 
 
     /**
@@ -94,18 +98,18 @@ class RegistroFragment : Fragment() {
         var surname = binding.editSurname.text.toString().trim()
         var telephone = binding.editPhone.text.toString().trim()
         var email = binding.editEmail.text.toString().trim()
-        var password = binding.editPassword.toString().trim()
-        var correcto=0
-        name.isNotEmpty()
-        email.matches(Regex("/^(([^<>()\\[\\]\\\\.,;:\\s@”]+(\\.[^<>()\\[\\]\\\\.,;:\\s@”]+)*)" +
-                "|(“.+”))@((\\[[0–9]{1,3}\\.[0–9]{1,3}\\.[0–9]{1,3}\\.[0–9]{1,3}])|(([a-zA-Z\\-0–9]+\\.)+[a-zA-Z]{2,}))\$/"))
-        password.isNotEmpty()
+        var password = binding.editPassword.text.toString()
+        println(password)
 
-        if(correcto==3){
+        if(name.isNotEmpty() &&  email.matches(
+                Regex("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}"))
+            && password.isNotEmpty()){
+
             return Usuario(0,name,surname,telephone,email,password,false)
         }
         return null
     }
+
 
 
 }
