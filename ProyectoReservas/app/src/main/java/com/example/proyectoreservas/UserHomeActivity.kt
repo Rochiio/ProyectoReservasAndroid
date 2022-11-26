@@ -61,18 +61,21 @@ class UserHomeActivity : AppCompatActivity() {
         binding.buttonNav.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.action_home ->{
+                    binding.textFragment.text="Mis Citas"
                     mFragmentManager.beginTransaction().hide(mActivityFragment).show(home).commit()
                     mActivityFragment= home
                     true
                 }
 
                 R.id.action_add ->{
+                    binding.textFragment.text="Añadir Cita"
                     mFragmentManager.beginTransaction().hide(mActivityFragment).show(add).commit()
                     mActivityFragment= add
                     true
                 }
 
                 R.id.action_about ->{
+                    binding.textFragment.text="Acerca de"
                     mFragmentManager.beginTransaction().hide(mActivityFragment).show(profile).commit()
                     mActivityFragment= profile
                     true
