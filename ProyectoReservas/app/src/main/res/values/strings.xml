@@ -27,4 +27,24 @@
     <string name="user_password">Contraseña del usuario</string>
     <string name="cita_hour">Cita Hora</string>
     <string name="cita_day">Cita Día</string>
+
+    <!-- Nombre de las peluqueras que hay -->
+    <string-array name="peluqueras">
+        <item>Macarena</item>
+        <item>Carla</item>
+        <item>Mario</item>
+        <item>Donna</item>
+        <item>Alexis</item>
+    </string-array>
+
+    <!-- Horas de cita que puede haber -->
+    <string-array name="horas">
+        <item>16:30</item>
+        <item>17:00</item>
+        <item>17:30</item>
+        <item>18:00</item>
+        <item>18:30</item>
+        <item>19:00</item>
+        <item>19:30</item>
+    </string-array>
 </resources>

@@ -10,7 +10,7 @@ data class Cita(
     var id: Int=0,
     var clienteEmail: String,
     val fecha: String,//Parse LocalDate
-    val hora: String,//Parse LocalTime
+    val hora: String,
     val peluquera: String,
 ) {
 }

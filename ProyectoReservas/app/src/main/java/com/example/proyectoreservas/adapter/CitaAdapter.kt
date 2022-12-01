@@ -1,10 +1,10 @@
-package com.example.proyectoreservas
+package com.example.proyectoreservas.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.proyectoreservas.R
 import com.example.proyectoreservas.databinding.CitasItemBinding
 import com.example.proyectoreservas.models.Cita
 
@@ -13,19 +13,16 @@ class CitaAdapter(
     //private var listener: CitaClickListener
     ) : RecyclerView.Adapter<CitaAdapter.ViewHolder>() {
 
-    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
+    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
         private val binding = CitasItemBinding.bind(view)
 
-        fun bind(element: Cita){
-            binding.textoPeluqueria.text=element.peluquera
+        fun bind(element: Cita) {
+            binding.textoPeluqueria.text = element.fecha
+            binding.photo.setImageResource(R.drawable.pelu)
         }
 
-        fun setListener(cita: Cita) {
-//            binding.root.setOnClickListener{ listener.onClick(cita) }
-            }
-
-        }
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -42,8 +39,21 @@ class CitaAdapter(
         return lista.size
     }
 
+
+
+    /**
+     * Poner una cita
+     */
     fun setCitas(citas: List<Cita>) {
         lista=citas.toMutableList()
+    }
+
+    /**
+     * Añadir una cita
+     */
+    fun addData(cita: Cita) {
+        lista.add(cita)
+        notifyDataSetChanged()
     }
 
 

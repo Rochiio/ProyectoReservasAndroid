@@ -12,6 +12,9 @@ interface CitaDao {
     @Query("SELECT * FROM Citas")
     suspend fun getAllCitas():List<Cita>
 
+    @Query("SELECT * FROM Citas WHERE hora= :hora & fecha= :dia & peluquera= :peluquera")
+    suspend fun peluqueraHoraDiaTieneCita(hora:String, dia:String, peluquera:String):Cita?
+
     @Insert
     suspend fun addCita(cita: Cita)
 

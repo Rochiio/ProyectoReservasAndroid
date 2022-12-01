@@ -82,8 +82,13 @@ class MainActivity : AppCompatActivity() {
      */
     private fun iniciarActivity(usuario: Usuario) {
         Data.usuarioActual=usuario
-        var intent = Intent(this,UserHomeActivity::class.java)
-        startActivity(intent)
+        if(usuario.admin==false){
+            var intent = Intent(this,UserHomeActivity::class.java)
+            startActivity(intent)
+        }else{
+            TODO()
+        }
+
     }
 
 }

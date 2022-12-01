@@ -6,18 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.proyectoreservas.CitaAdapter
-import com.example.proyectoreservas.CitaClickListener
+import com.example.proyectoreservas.adapter.CitaAdapter
 import com.example.proyectoreservas.databinding.FragmentHomeBinding
 import com.example.proyectoreservas.db.UsuarioApplication
 import com.example.proyectoreservas.models.Cita
 import com.example.proyectoreservas.models.Data
 import kotlinx.coroutines.launch
 
+/**
+ * Fragmento home del usuario.
+ */
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var adaptador: CitaAdapter
 
   override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,17 +32,19 @@ class HomeFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Data.citaAdapter = CitaAdapter(mutableListOf())
 
-        var citas: MutableList<Cita> = mutableListOf()
+        var citas: MutableList<Cita>
         lifecycleScope.launch{
             citas = UsuarioApplication.database.citasDao().getCitaByClienteEmail(Data.usuarioActual?.email!!).toMutableList()
+            Data.citaAdapter!!.setCitas(citas)
         }
 
-        adaptador = CitaAdapter(citas)
 
         binding.recyclerview.apply {
-            layoutManager = LinearLayoutManager(this.context)
-            adapter = adaptador
+            setHasFixedSize(true)
+            layoutManager= LinearLayoutManager(this@HomeFragment.context)
+            adapter= Data.citaAdapter
         }
     }
 
