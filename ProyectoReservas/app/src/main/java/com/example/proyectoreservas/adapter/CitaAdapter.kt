@@ -7,19 +7,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectoreservas.R
 import com.example.proyectoreservas.databinding.CitasItemBinding
 import com.example.proyectoreservas.models.Cita
+import com.example.proyectoreservas.models.CitaListener
 
 class CitaAdapter(
     private var lista:MutableList<Cita>,
-    //private var listener: CitaClickListener
+    private var listener: CitaListener
     ) : RecyclerView.Adapter<CitaAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
         private val binding = CitasItemBinding.bind(view)
 
-        fun bind(element: Cita) {
+        fun bind(element: Cita, listener: CitaListener) {
             binding.textoPeluqueria.text = element.fecha
             binding.photo.setImageResource(R.drawable.pelu)
+            binding.photo.setOnClickListener {
+                listener.onClick(element)
+            }
         }
 
     }
@@ -32,7 +36,7 @@ class CitaAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var cita = lista[position]
-        holder.bind(cita)
+        holder.bind(cita, listener)
     }
 
     override fun getItemCount(): Int {

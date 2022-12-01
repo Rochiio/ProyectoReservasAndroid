@@ -38,10 +38,11 @@ class AddFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var peluqueras:List<Peluquera> = listOf()
-        lifecycleScope.launch {
-            peluqueras = UsuarioApplication.database.peluquerasDao().getAllPeluqueras()
-        }
+//        var peluqueras:List<Peluquera> = listOf()
+//        lifecycleScope.launch {
+//            peluqueras = UsuarioApplication.database.peluquerasDao().getAllPeluqueras()
+//        }
+        val peluqueras = resources.getStringArray(R.array.peluqueras)
         val arrayPAdapter = this.context?.let { ArrayAdapter(it, R.layout.listapeluqueras_item , peluqueras) }
         binding.editPeluquera.setAdapter(arrayPAdapter)
 
@@ -53,7 +54,7 @@ class AddFragment : Fragment() {
         binding.buttonAdd.setOnClickListener {
             val dia = binding.editDay.text.toString()
             val hora = binding.editTime.text.toString()
-            val peluquera = binding.editTime.text.toString()
+            val peluquera = binding.editPeluquera.text.toString()
 
             accionAdd(dia, hora, peluquera)
         }
@@ -91,7 +92,7 @@ class AddFragment : Fragment() {
         val camposFecha = dia.split("-")
 
         if (dia.isNotEmpty() && hora.isNotEmpty() && peluquera.isNotEmpty()){
-            if (camposFecha[0].toInt() > Data.day && camposFecha[1].toInt() >= Data.month && camposFecha[1].toInt()== Data.year ) {
+            if (camposFecha[0].toInt() > Data.day) {
 
                 lifecycleScope.launch {
                     val find = UsuarioApplication.database.citasDao()
@@ -109,6 +110,7 @@ class AddFragment : Fragment() {
                         UsuarioApplication.database.citasDao().addCita(cita)
                         Toast.makeText(context, "Cita añadida", LENGTH_LONG).show()
                         Data.citaAdapter?.addData(cita)
+                        clearFragment()
                     }
                 }
             }else{
@@ -117,6 +119,15 @@ class AddFragment : Fragment() {
         }else{
             Toast.makeText(this.context,"Deben de estar todos los campos rellenados", LENGTH_LONG).show()
         }
+    }
+
+    /**
+     * Limpiar los apartados del fragmento
+     */
+    private fun clearFragment() {
+        binding.editDay.text?.clear()
+        binding.editTime.text?.clear()
+        binding.editPeluquera.text?.clear()
     }
 
 }
