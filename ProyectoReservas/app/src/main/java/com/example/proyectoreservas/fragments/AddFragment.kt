@@ -25,7 +25,6 @@ import java.util.*
  */
 class AddFragment : Fragment() {
     private lateinit var binding: FragmentAddBinding
-    private lateinit var adaptador: CitaAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,11 +37,11 @@ class AddFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        var peluqueras:List<Peluquera> = listOf()
-//        lifecycleScope.launch {
-//            peluqueras = UsuarioApplication.database.peluquerasDao().getAllPeluqueras()
-//        }
-        val peluqueras = resources.getStringArray(R.array.peluqueras)
+        var peluqueras:List<Peluquera> = listOf()
+        lifecycleScope.launch {
+            peluqueras = UsuarioApplication.database.peluquerasDao().getAllPeluqueras()
+        }
+        //val peluqueras = resources.getStringArray(R.array.peluqueras)
         val arrayPAdapter = this.context?.let { ArrayAdapter(it, R.layout.listapeluqueras_item , peluqueras) }
         binding.editPeluquera.setAdapter(arrayPAdapter)
 

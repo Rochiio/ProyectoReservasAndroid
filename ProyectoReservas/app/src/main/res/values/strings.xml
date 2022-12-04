@@ -27,6 +27,11 @@
     <string name="user_password">Contraseña del usuario</string>
     <string name="cita_hour">Cita Hora</string>
     <string name="cita_day">Cita Día</string>
+    <string name="admin_pelu">Administración Peluquer@s</string>
+    <string name="add_pelu">Añadir Peluquer@</string>
+    <string name="name_pelu">Nombre Peluquer@</string>
+    <string name="email_pelu">Email Peluquer@</string>
+    <string name="phone_pelu">Teléfono Peluquer@</string>
 
     <!-- Nombre de las peluqueras que hay -->
     <string-array name="peluqueras">

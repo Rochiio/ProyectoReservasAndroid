@@ -9,6 +9,9 @@ interface PeluqueraDAO {
     @Query("SELECT * FROM Peluqueras")
     suspend fun getAllPeluqueras():List<Peluquera>
 
+    @Query("SELECT * FROM Peluqueras WHERE correo = :email")
+    suspend fun findByEmail(email:String):Peluquera?
+
     @Insert
     suspend fun addPeluquera(peluquera: Peluquera)
 

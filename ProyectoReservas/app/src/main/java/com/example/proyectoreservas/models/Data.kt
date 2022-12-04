@@ -1,6 +1,7 @@
 package com.example.proyectoreservas.models
 
 import com.example.proyectoreservas.adapter.CitaAdapter
+import com.example.proyectoreservas.adapter.PeluqueraAdapter
 import java.util.*
 
 /**
@@ -15,4 +16,5 @@ object Data {
 
     var usuarioActual: Usuario? = null
     var citaAdapter: CitaAdapter? = null
+    var peluqueraAdapter: PeluqueraAdapter? = null
 }

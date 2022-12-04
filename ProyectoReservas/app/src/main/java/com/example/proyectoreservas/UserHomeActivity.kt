@@ -35,7 +35,6 @@ class UserHomeActivity : AppCompatActivity() {
     }
 
     private fun setUpFragment() {
-        binding.buttonNav.itemTextColor=ColorStateList.valueOf(getResources().getColor(R.color.fuxia))
         mFragmentManager = supportFragmentManager
 
         val home = HomeFragment()

@@ -9,7 +9,7 @@ import com.example.proyectoreservas.models.Usuario
 /**
  * Tablas de la base de datos
  */
-@Database(entities = arrayOf(Usuario::class, Cita::class, Peluquera::class), version =3)
+@Database(entities = arrayOf(Usuario::class, Cita::class, Peluquera::class), version =4)
 abstract class UsuarioDatabase: RoomDatabase(){
     abstract fun usuarioDao(): UsuarioDao
     abstract fun citasDao(): CitaDao

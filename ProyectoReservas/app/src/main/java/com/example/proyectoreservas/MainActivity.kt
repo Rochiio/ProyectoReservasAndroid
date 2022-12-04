@@ -86,7 +86,8 @@ class MainActivity : AppCompatActivity() {
             var intent = Intent(this,UserHomeActivity::class.java)
             startActivity(intent)
         }else{
-            TODO()
+            var intent = Intent(this,AdminHomeActivity::class.java)
+            startActivity(intent)
         }
 
     }
