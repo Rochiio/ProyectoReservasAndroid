@@ -7,7 +7,7 @@ import java.time.LocalDate
 @Entity(tableName="Citas")
 data class Cita(
     @PrimaryKey(autoGenerate = true)
-    var id: Int=0,
+    var id: Int? = null,
     var clienteEmail: String,
     val fecha: String,//Parse LocalDate
     val hora: String,

@@ -36,9 +36,9 @@ class AdminHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Data.peluqueraAdapter = PeluqueraAdapter(mutableListOf())
 
-        var peluqueros: MutableList<Peluquera>
+        var peluqueros: List<Peluquera>
         lifecycleScope.launch{
-            peluqueros = UsuarioApplication.database.peluquerasDao().getAllPeluqueras().toMutableList()
+            peluqueros = UsuarioApplication.database.peluquerasDao().getAllPeluqueras().toList()
             Data.peluqueraAdapter!!.setPeluqueras(peluqueros)
         }
 
@@ -46,7 +46,7 @@ class AdminHomeFragment : Fragment() {
         binding.recyclerview.apply {
             setHasFixedSize(true)
             layoutManager= LinearLayoutManager(this@AdminHomeFragment.context)
-            adapter= Data.citaAdapter
+            adapter= Data.peluqueraAdapter
         }
     }
 

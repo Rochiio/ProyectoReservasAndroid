@@ -37,9 +37,9 @@ class AddFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var peluqueras:List<Peluquera> = listOf()
+        var peluqueras:List<String> = listOf()
         lifecycleScope.launch {
-            peluqueras = UsuarioApplication.database.peluquerasDao().getAllPeluqueras()
+            peluqueras = UsuarioApplication.database.peluquerasDao().getAllPeluqueras().map { it.nombre}.toList()
         }
         //val peluqueras = resources.getStringArray(R.array.peluqueras)
         val arrayPAdapter = this.context?.let { ArrayAdapter(it, R.layout.listapeluqueras_item , peluqueras) }
@@ -49,14 +49,6 @@ class AddFragment : Fragment() {
         val arrayHAdapter = this.context?.let { ArrayAdapter(it,  R.layout.listahoras_item , horas) }
         binding.editTime.setAdapter(arrayHAdapter)
 
-
-        binding.buttonAdd.setOnClickListener {
-            val dia = binding.editDay.text.toString()
-            val hora = binding.editTime.text.toString()
-            val peluquera = binding.editPeluquera.text.toString()
-
-            accionAdd(dia, hora, peluquera)
-        }
 
         binding.editDay.setOnClickListener{
             val c = Calendar.getInstance()
@@ -77,6 +69,17 @@ class AddFragment : Fragment() {
             datePickerDialog.show()
         }
 
+
+
+        binding.buttonAdd.setOnClickListener {
+            val dia = binding.editDay.text.toString()
+            val hora = binding.editTime.text.toString()
+            val peluquera = binding.editPeluquera.text.toString()
+
+            accionAdd(dia, hora, peluquera)
+        }
+
+
     }
 
 
@@ -94,8 +97,8 @@ class AddFragment : Fragment() {
             if (camposFecha[0].toInt() > Data.day) {
 
                 lifecycleScope.launch {
-                    val find = UsuarioApplication.database.citasDao()
-                        .peluqueraHoraDiaTieneCita(hora, dia, peluquera)
+                    val lista = UsuarioApplication.database.citasDao().getAllCitas()
+                    var find = lista.filter { it.peluquera== peluquera && it.hora == hora && it.fecha==dia }.firstOrNull()
                     find?.let {
                         Toast.makeText(contexto, "$peluquera ya tiene una cita ", LENGTH_LONG)
                             .show()

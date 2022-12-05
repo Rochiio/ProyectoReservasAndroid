@@ -16,7 +16,7 @@ import kotlinx.serialization.Serializer
 @Serializable
 data class Usuario(
     @PrimaryKey(autoGenerate = true)
-    var id: Int=0,
+    var id: Int? = null,
     val name: String="",
     val surname: String?="",
     val telephone: String?="",

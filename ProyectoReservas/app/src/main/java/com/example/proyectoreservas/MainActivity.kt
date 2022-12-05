@@ -9,6 +9,7 @@ import com.example.proyectoreservas.databinding.ActivityMainBinding
 import com.example.proyectoreservas.db.UsuarioApplication
 import com.example.proyectoreservas.fragments.RegistroFragment
 import com.example.proyectoreservas.models.Data
+import com.example.proyectoreservas.models.Peluquera
 import com.example.proyectoreservas.models.Usuario
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -32,11 +33,23 @@ class MainActivity : AppCompatActivity() {
             correctUser()
         }
 
+        /**
+         * Datos iniciales app, instalar y eliminar la app cada vez para que esto funcione.
+         */
         lifecycleScope.launch{
-            //UsuarioApplication.database.usuarioDao().addUser(Usuario(0,"Pepe","Algo","6666","pepe","1234",false))
+            UsuarioApplication.database.usuarioDao().addUser(Usuario(0,"Pepe","Algo","6666","pepe","1234",false))
+             }
 
-            var lista = UsuarioApplication.database.usuarioDao().getAllUsers()
-            lista.forEach{println(it)}
+        lifecycleScope.launch {
+            UsuarioApplication.database.usuarioDao().addUser(Usuario(1,"Carla","Admin","469181","admin","1234",true))
+        }
+
+        lifecycleScope.launch {
+            UsuarioApplication.database.peluquerasDao().addPeluquera(Peluquera(0, "Donna", "donna@pelus.gmail.com", "963411"))
+        }
+
+        lifecycleScope.launch {
+            UsuarioApplication.database.peluquerasDao().addPeluquera(Peluquera(1, "Xavier", "xavi@pelus.gmail.com", "963411"))
         }
 
     }
@@ -82,7 +95,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun iniciarActivity(usuario: Usuario) {
         Data.usuarioActual=usuario
-        if(usuario.admin==false){
+        if(!usuario.admin){
             var intent = Intent(this,UserHomeActivity::class.java)
             startActivity(intent)
         }else{

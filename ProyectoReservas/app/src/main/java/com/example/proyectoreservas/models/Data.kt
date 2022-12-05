@@ -17,4 +17,9 @@ object Data {
     var usuarioActual: Usuario? = null
     var citaAdapter: CitaAdapter? = null
     var peluqueraAdapter: PeluqueraAdapter? = null
+
+
+    var userInicial = Usuario(0,"Pepe","Algo","6666","pepe","1234",false)
+    var adminInicial = Usuario(0,"Clara","Algo","6666","clara","1234",true)
+    var peluqueraInicial = Peluquera(0,"Carla", "carla@gmial.com", "666718151")
 }
