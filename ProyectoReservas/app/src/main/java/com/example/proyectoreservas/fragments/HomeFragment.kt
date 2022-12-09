@@ -1,10 +1,12 @@
 package com.example.proyectoreservas.fragments
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -61,6 +63,29 @@ class HomeFragment : Fragment(), CitaListener {
                     "Fecha: ${item.fecha}\n" +
                     "Hora: ${item.hora}\n" +
                     "Peluquera/o: ${item.peluquera}")
+
+        builder.create().show()
+    }
+
+
+    /**
+     * Acción al hacer un click lago en un elemento de la lista
+     */
+    override fun onLargeClick(item: Cita) {
+        val builder = AlertDialog.Builder(this.requireContext())
+            .setTitle("Confirmación de Borrado")
+            .setMessage("Desea borrar la cita del día ${item.fecha} a las ${item.hora} ?")
+            .setCancelable(false)
+        builder.setPositiveButton("Si") { dialog, which ->
+            lifecycleScope.launch {
+                Data.citaAdapter!!.deleteData(item)
+                UsuarioApplication.database.citasDao().deleteCita(item)
+            }
+            Toast.makeText(this.context, "Cita eliminada ", Toast.LENGTH_LONG).show()
+        }
+        builder.setNegativeButton("No") {dialog, which ->
+            Toast.makeText(this.context, "Eliminacion cancelada", Toast.LENGTH_LONG).show()
+        }
 
         builder.create().show()
     }

@@ -68,7 +68,7 @@ class RegistroFragment : Fragment() {
                     }
                 }?: run {
                         Snackbar.make(
-                            binding.root, "Datos requeridos vaciós y/o incorrectos",
+                            binding.root, "Datos requeridos vacíos y/o incorrectos",
                             Snackbar.LENGTH_SHORT
                         )
                             .show()

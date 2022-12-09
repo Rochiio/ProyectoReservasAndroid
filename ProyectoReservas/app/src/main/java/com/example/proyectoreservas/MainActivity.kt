@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             correctUser()
         }
 
+
         /**
          * Datos iniciales app, instalar y eliminar la app cada vez para que esto funcione.
          */

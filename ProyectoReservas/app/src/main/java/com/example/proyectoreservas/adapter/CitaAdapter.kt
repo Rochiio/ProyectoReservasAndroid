@@ -18,11 +18,16 @@ class CitaAdapter(
 
         private val binding = CitasItemBinding.bind(view)
 
-        fun bind(element: Cita, listener: CitaListener) {
+        fun bind(element: Cita) {
             binding.textoPeluqueria.text = element.fecha
             binding.photo.setImageResource(R.drawable.pelu)
-            binding.photo.setOnClickListener {
-                listener.onClick(element)
+        }
+
+        fun setListener(cita: Cita) {
+            binding.root.setOnClickListener{ listener.onClick(cita) }
+            binding.root.setOnLongClickListener {
+                listener.onLargeClick(cita)
+                true
             }
         }
 
@@ -36,7 +41,8 @@ class CitaAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var cita = lista[position]
-        holder.bind(cita, listener)
+        holder.bind(cita)
+        holder.setListener(cita)
     }
 
     override fun getItemCount(): Int {
@@ -57,6 +63,14 @@ class CitaAdapter(
      */
     fun addData(cita: Cita) {
         lista.add(cita)
+        notifyDataSetChanged()
+    }
+
+    /**
+     * Eliminar una cita
+     */
+    fun deleteData(cita: Cita) {
+        lista.remove(cita)
         notifyDataSetChanged()
     }
 

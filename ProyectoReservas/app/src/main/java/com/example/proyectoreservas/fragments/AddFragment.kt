@@ -37,13 +37,14 @@ class AddFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var peluqueras:List<String> = listOf()
+        var context = this.context
+        var peluqueras: List<String>
         lifecycleScope.launch {
-            peluqueras = UsuarioApplication.database.peluquerasDao().getAllPeluqueras().map { it.nombre}.toList()
+            peluqueras = UsuarioApplication.database.peluquerasDao().getAllPeluqueras().map { it.nombre }.toList()
+            val arrayPAdapter = context?.let { ArrayAdapter(it, R.layout.listapeluqueras_item , peluqueras) }
+            binding.editPeluquera.setAdapter(arrayPAdapter)
         }
-        //val peluqueras = resources.getStringArray(R.array.peluqueras)
-        val arrayPAdapter = this.context?.let { ArrayAdapter(it, R.layout.listapeluqueras_item , peluqueras) }
-        binding.editPeluquera.setAdapter(arrayPAdapter)
+
 
         val horas = resources.getStringArray(R.array.horas)
         val arrayHAdapter = this.context?.let { ArrayAdapter(it,  R.layout.listahoras_item , horas) }
@@ -122,6 +123,7 @@ class AddFragment : Fragment() {
             Toast.makeText(this.context,"Deben de estar todos los campos rellenados", LENGTH_LONG).show()
         }
     }
+
 
     /**
      * Limpiar los apartados del fragmento
