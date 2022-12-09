@@ -20,6 +20,7 @@ object Data {
 
 
     var userInicial = Usuario(0,"Pepe","Algo","6666","pepe","1234",false)
-    var adminInicial = Usuario(0,"Clara","Algo","6666","clara","1234",true)
-    var peluqueraInicial = Peluquera(0,"Carla", "carla@gmial.com", "666718151")
+    var adminInicial = Usuario(1,"Carla","Admin","469181","admin","1234",true)
+    var peluqueraInicial = Peluquera(0, "Donna", "donna@pelus.gmail.com", "963411")
+    var peluqueraInicial2 = Peluquera(1, "Xavier", "xavi@pelus.gmail.com", "963411")
 }

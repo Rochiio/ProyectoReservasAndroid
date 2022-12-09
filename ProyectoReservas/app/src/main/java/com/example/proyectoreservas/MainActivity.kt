@@ -37,19 +37,19 @@ class MainActivity : AppCompatActivity() {
          * Datos iniciales app, instalar y eliminar la app cada vez para que esto funcione.
          */
         lifecycleScope.launch{
-            UsuarioApplication.database.usuarioDao().addUser(Usuario(0,"Pepe","Algo","6666","pepe","1234",false))
+            UsuarioApplication.database.usuarioDao().addUser(Data.userInicial)
              }
 
         lifecycleScope.launch {
-            UsuarioApplication.database.usuarioDao().addUser(Usuario(1,"Carla","Admin","469181","admin","1234",true))
+            UsuarioApplication.database.usuarioDao().addUser(Data.adminInicial)
         }
 
         lifecycleScope.launch {
-            UsuarioApplication.database.peluquerasDao().addPeluquera(Peluquera(0, "Donna", "donna@pelus.gmail.com", "963411"))
+            UsuarioApplication.database.peluquerasDao().addPeluquera(Data.peluqueraInicial)
         }
 
         lifecycleScope.launch {
-            UsuarioApplication.database.peluquerasDao().addPeluquera(Peluquera(1, "Xavier", "xavi@pelus.gmail.com", "963411"))
+            UsuarioApplication.database.peluquerasDao().addPeluquera(Data.peluqueraInicial2)
         }
 
     }
@@ -59,10 +59,10 @@ class MainActivity : AppCompatActivity() {
      * Abrir el fragmento para el registro del cliente.
      */
     private fun openFragment() {
-        var fragmentManager = getSupportFragmentManager();
-        var fragmentTransaction = fragmentManager.beginTransaction();
-        var fragment1 = RegistroFragment();
-        fragmentTransaction.add(android.R.id.content, fragment1).commit();
+        var fragmentManager = supportFragmentManager
+        var fragmentTransaction = fragmentManager.beginTransaction()
+        var fragment1 = RegistroFragment()
+        fragmentTransaction.add(android.R.id.content, fragment1).commit()
     }
 
 

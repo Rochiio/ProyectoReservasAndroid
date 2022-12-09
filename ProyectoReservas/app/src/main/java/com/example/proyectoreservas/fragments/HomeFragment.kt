@@ -61,6 +61,7 @@ class HomeFragment : Fragment(), CitaListener {
                     "Fecha: ${item.fecha}\n" +
                     "Hora: ${item.hora}\n" +
                     "Peluquera/o: ${item.peluquera}")
+
         builder.create().show()
     }
 

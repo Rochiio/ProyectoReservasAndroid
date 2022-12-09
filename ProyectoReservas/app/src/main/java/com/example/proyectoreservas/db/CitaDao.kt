@@ -12,7 +12,6 @@ interface CitaDao {
     @Query("SELECT * FROM Citas")
     suspend fun getAllCitas():List<Cita>
 
-
     @Insert
     suspend fun addCita(cita: Cita)
 
